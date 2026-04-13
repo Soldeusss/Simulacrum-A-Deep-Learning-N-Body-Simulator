@@ -8,7 +8,7 @@ Simulacrum/
 ├── .gitignore
 │
 ├── data/
-│   ├── flybyData.csv       
+│   ├── flybyData.csv       # data generated from montecarlo trials
 │
 ├── models/
 │   ├── solar_system_ai.keras
@@ -16,9 +16,9 @@ Simulacrum/
 │   └── y_scaler.pkl            
 │
 ├── src/
-│   ├── physicsEngine.py
-│   ├── datagen.py
-│   └── nasaData.py
+│   ├── physicsEngine.py #rk4 + newton's gravitational law
+│   ├── datagen.py #montecarlo simulation to generate data set
+│   └── nasaData.py # gets data from nasa
 │
 ├── training/
 │   └── SimulacrumNeural.ipynb
@@ -90,7 +90,7 @@ This project utilizes NASA's **NAIF SPICE** toolkit to ensure high-fidelity plan
 * **PCK (gm_de431.tpc):** Planetary constants kernel containing $GM$ values for mass calculations.
 
 ## Future Work
-* **Physics-Informed Neural Networks (PINNs):** Explore incorporating physical constraints based on Newtonian gravity into the training loss so the model better follows real orbital dynamics and remains stable over long prediction horizons.
+* **Physics-Informed Neural Networks (PINNs):** Explore incorporating physical constraints based on Newtonian gravitational dynamics so the model better follows real orbital dynamics and remains stable over long prediction horizons.
 * **Energy-Conservation:** Improve long-term orbital stability by replacing or augmenting the RK4 integrator with energy-conserving symplectic methods (e.g., Leapfrog integration) to reduce drift in simulated orbits
 * **Improved Temporal Stability:** Incorporate Keplerian orbital structure or Lagrangian mechanics-inspired constraints to improve the physical realism and long-term stability of predicted orbital trajectories
 
