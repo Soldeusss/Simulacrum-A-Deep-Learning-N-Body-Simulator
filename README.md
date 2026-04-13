@@ -1,3 +1,29 @@
+## Project Structure
+Simulacrum/
+│
+├── README.md
+├── requirements.txt
+├── .gitignore
+│
+├── data/
+│   ├── flybyData.csv       
+│
+├── models/
+│   ├── solar_system_ai.keras
+│   ├── X_scaler.pkl             
+│   └── y_scaler.pkl            
+│
+├── src/
+│   ├── physicsEngine.py
+│   ├── datagen.py
+│   └── nasaData.py
+│
+├── training/
+│   └── SimulacrumNeural.ipynb
+│
+└── visualization/
+    └── spaceGraphics.py
+
 # Simulacrum: Neural N-Body Simulator
 ![orbital_simulation](https://github.com/user-attachments/assets/940fc64a-97d3-4867-a285-b6bc8773248c)
 
