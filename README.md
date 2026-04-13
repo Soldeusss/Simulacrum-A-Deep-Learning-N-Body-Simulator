@@ -9,11 +9,11 @@ Simulacrum/
 │
 ├── data/
 │   ├── flybyData.csv       # data generated from montecarlo trials
+│   ├── X_scaler.pkl             
+│   └── y_scaler.pkl 
 │
 ├── models/
 │   ├── solar_system_ai.keras
-│   ├── X_scaler.pkl             
-│   └── y_scaler.pkl            
 │
 ├── src/
 │   ├── physicsEngine.py #rk4 + newton's gravitational law
