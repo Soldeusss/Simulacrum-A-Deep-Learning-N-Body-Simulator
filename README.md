@@ -1,4 +1,6 @@
 ## Project Structure
+
+```text
 Simulacrum/
 │
 ├── README.md
@@ -23,7 +25,7 @@ Simulacrum/
 │
 └── visualization/
     └── spaceGraphics.py
-
+```
 # Simulacrum: Neural N-Body Simulator
 ![orbital_simulation](https://github.com/user-attachments/assets/940fc64a-97d3-4867-a285-b6bc8773248c)
 
