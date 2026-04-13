@@ -205,3 +205,19 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+
+# Project-specific Data
+*.bsp
+*.tpc
+
+# Model checkpoints and large binaries
+*.keras
+*.h5
+
+# IDE Settings
+.vscode/
+.idea/
+
+# OS generated files
+.DS_Store
+Thumbs.db
