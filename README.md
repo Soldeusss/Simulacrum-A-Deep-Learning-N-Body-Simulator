@@ -37,7 +37,7 @@ Simulacrum is designed to simulate chaotic N-body gravitational interactions. Th
 
 While the underlying physics engine uses 4th-order Runge-Kutta (RK4) integration to generate high-fidelity training data, the trained neural surrogate model predicts planetary state transitions in constant time per system update (O(1) inference for this fixed 10-body architecture). In general, neural surrogate models scale with input dimensionality and architectural complexity rather than explicit pairwise interaction count.
 
-<img width="992" height="591" alt="effciency graph" src="https://github.com/user-attachments/assets/c9c6f503-6e7f-485a-9463-1dc5254fd886" />
+<img width="1189" height="698" alt="efficiency" src="https://github.com/user-attachments/assets/82c3e9a0-a7bf-4ebf-b968-1e84329e7bf5" />
 
 ## Key Features
 * **High-Precision Physics:** Implements RK4 integration for planetary dynamics with state vectors sourced from NASA’s NAIF SPICE kernels via `spiceypy`.
@@ -62,6 +62,9 @@ To maintain numerical stability, the engine uses RK4 integration to evolve posit
     * **Time Complexity:** Inference Complexity: O(1) per system state update (fixed architecture and input size)
 
 ## Model Evaluation & Error Breakdown
+<img width="845" height="546" alt="Learning Curve" src="https://github.com/user-attachments/assets/1456f022-e962-49d7-b044-2c09c506cf38" />
+
+
 The network achieves a Global Relative Error of **0.97%**. However, accuracy varies significantly depending on the chaotic nature of the orbit. Inner planets experience higher variance due to tighter gravitational constraints, while outer planets remain highly predictable.
 
 | Celestial Body | Mean Absolute Error (km) | Relative Error |
