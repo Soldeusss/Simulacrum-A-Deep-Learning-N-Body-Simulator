@@ -29,7 +29,7 @@ Simulacrum/
 # Simulacrum: Neural N-Body Simulator
 ![orbital_simulation](https://github.com/user-attachments/assets/940fc64a-97d3-4867-a285-b6bc8773248c)
 
-# Deep-Learning Accelerated Orbital Mechanics
+# Deep-Learning Orbital Mechanics
 A hybrid physics-AI engine utilizing NASA SPICE kernels and a high-fidelity RK4 integrator to generate ground-truth data, driving a neural network that predicts chaotic gravitational perturbations in real-time.
 
 ## Overview
