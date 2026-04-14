@@ -30,7 +30,7 @@ Simulacrum-A-Deep-Learning-N-Body-Simulator/
 ![orbital_simulation](https://github.com/user-attachments/assets/940fc64a-97d3-4867-a285-b6bc8773248c)
 
 # Deep-Learning Orbital Mechanics
-A hybrid physics-AI engine utilizing NASA SPICE kernels and a high-fidelity RK4 integrator to generate ground-truth data, driving a neural network that predicts chaotic gravitational perturbations in real-time.
+Simulacrum is a hybrid physics + deep learning system that uses a feed-forward neural network as a surrogate model to approximate chaotic N-body dynamics.
 
 ## Overview
 Simulacrum is designed to simulate chaotic N-body gravitational interactions. The goal is to approximate the computational cost of traditional N-body simulations (O(N²) complexity per timestep) using a Feed-Forward Neural Network surrogate model 
