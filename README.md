@@ -103,7 +103,7 @@ This project utilizes NASA's **NAIF SPICE** toolkit to ensure high-fidelity plan
 ### Installation
 1. Clone the repository:
    ```bash
-   git clone [https://github.com/Soldeusss/Simulacrum.git](https://github.com/Soldeusss/Simulacrum.git)
+   git clone https://github.com/Soldeusss/Simulacrum-A-Deep-Learning-N-Body-Simulator.git
    cd Simulacrum
 2. ```bash
    pip install -r requirements.txt
