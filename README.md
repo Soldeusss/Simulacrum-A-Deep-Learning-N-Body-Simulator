@@ -1,7 +1,7 @@
 ## Project Structure
 
 ```text
-Simulacrum/
+Simulacrum-A-Deep-Learning-N-Body-Simulator/
 │
 ├── README.md
 ├── requirements.txt
