@@ -27,7 +27,11 @@ Simulacrum-A-Deep-Learning-N-Body-Simulator/
     └── spaceGraphics.py
 ```
 # Simulacrum: Neural N-Body Simulator
-![orbital_simulation](https://github.com/user-attachments/assets/940fc64a-97d3-4867-a285-b6bc8773248c)
+
+
+https://github.com/user-attachments/assets/13265ec8-42cb-48f2-ad03-274a7e7a81b4
+
+
 
 # Deep-Learning Orbital Mechanics
 Simulacrum is a hybrid physics + deep learning system that uses a feed-forward neural network as a surrogate model to approximate chaotic N-body dynamics.
