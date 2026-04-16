@@ -45,8 +45,8 @@ While the underlying physics engine uses 4th-order Runge-Kutta (RK4) integration
 
 ## Key Features
 * **High-Precision Physics:** Implements RK4 integration for planetary dynamics with state vectors sourced from NASA’s NAIF SPICE kernels via `spiceypy`.
-* **Large-Scale Data Ingestion:** Monte Carlo engine used to generate and process a 32MB dataset containing 30,000 unique gravitational flyby scenarios.
-* **Neural Accelerator:** Neural Surrogate Model: A deep neural network that approximates chaotic perturbations with low mean relative error (< 1%) across evaluation data
+* **Parallelized Data Pipeline:** Utilizes Python's concurrent.futures to run a Monte Carlo engine across parallel processes, generating a 32MB dataset of 30,000 unique gravitational flyby scenarios across 17,000+ timesteps per trial
+* **Deep Neural Surrogate Model:** A 5-layer feed-forward neural network that maps 17 initial state features to 54 continuous kinematic variables, approximating chaotic perturbations with a global mean relative error of < 1%
 * **Real-Time Visualization:** Interactive PyGame environment for rendering planetary trajectories and AI predictions.
 
 ## Technical Architecture
