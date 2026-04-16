@@ -83,6 +83,9 @@ The network achieves a Global Relative Error of **0.97%**. However, accuracy var
 | **Uranus** | 457,943 | 0.0002 |
 | **Neptune** | 380,995 | 0.0001 |
 
+<img width="994" height="789" alt="Screenshot 2026-04-14 195012" src="https://github.com/user-attachments/assets/2ae3f70c-14c0-471b-b15c-bc04bead9782" />
+
+
 ### Technical Note: Model Error vs. Visualization Effects
 Deviations in predicted trajectories arise from both model and rendering factors:
 1. **Chaotic Error Amplification:** The gravitational N-body system is highly sensitive to initial conditions. Small prediction errors compound over time during autoregressive rollout, particularly in the inner planetary orbits (as seen in the Mercury/Venus metrics above).
