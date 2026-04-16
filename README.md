@@ -57,13 +57,27 @@ $$F = G \frac{m_1 m_2}{r^2}$$
 
 To maintain numerical stability, the engine uses RK4 integration to evolve positions and velocities over time, ensuring physically consistent trajectories prior to model training.
 
+## Data Pipeline & Ingestion
+
+To train the neural net, a  data generation pipeline was made to simulate chaotic N-body interactions at scale:
+
+- **Ingestion:**  
+  Programmatically fetches and parses NASA NAIF SPICE kernels to establish ground-truth initial conditions.
+
+- **Simulation Engine:**  
+  Generates randomized "rogue interloper" parameters (mass, velocity, trajectory).
+
+- **Parallel Execution:**  
+  Uses Python multiprocessing to compute 30,000 distinct universes simultaneously, utilizing RK4 integration to step forward in time and capture final planetary states.
+
 ### The Neural Network
-* **Input Layer:** 17 features (Interloper mass, time, and 3D relative distances).
+* **Input Layer:** Interloper mass, time horizon, 3D position/velocity vectors, and initial scalar distances to all major celestial bodies.
 * **Hidden Layers:** 5-layer Dense architecture with ReLU activation.
+* **Output Layer (54 Variables):** Multi-target regression predicting 6 kinematic state vectors (X, Y, Z, VX, VY, VZ) for 9 distinct celestial bodies.
 * **Performance:**
     * **Mean Position Error (MAE):** 1,236,958 km (on a solar-system scale).
     * **Global Mean Relative Error:** 0.0097.
-    * **Time Complexity:** Inference Complexity: O(1) per system state update (fixed architecture and input size)
+    * **Time Complexity:** O(1) inference per system state update, bypassing the O(N²) bottleneck of traditional numerical integrators.
 
 ## Model Evaluation & Error Breakdown
 <img width="845" height="546" alt="Learning Curve" src="https://github.com/user-attachments/assets/1456f022-e962-49d7-b044-2c09c506cf38" />
