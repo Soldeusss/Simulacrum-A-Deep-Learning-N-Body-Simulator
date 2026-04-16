@@ -120,13 +120,27 @@ This project utilizes NASA's **NAIF SPICE** toolkit to ensure high-fidelity plan
 
 ## Getting Started
 ### Prerequisites
-* Python 3.10+
+* Python 3.10 to 3.13: TensorFlow is currently most stable within this range.
 ### Installation
 1. Clone the repository:
    ```bash
    git clone https://github.com/Soldeusss/Simulacrum-A-Deep-Learning-N-Body-Simulator.git
    cd Simulacrum
-2. ```bash
+2. Set up a Virtual Environment:
+   ```bash 
+   
+   windows:
+   
+   python -m venv venv
+   .\venv\Scripts\activate
+
+   mac:
+   python3 -m venv venv
+   source venv/bin/activate
+   
+   install dependencies:
    pip install -r requirements.txt
-3. ```bash
+3. Run the simulator
+   ```bash 
    python spaceGraphics.py
+   
