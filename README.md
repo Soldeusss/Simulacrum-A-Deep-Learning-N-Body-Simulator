@@ -144,6 +144,7 @@ This project utilizes NASA's **NAIF SPICE** toolkit to ensure high-fidelity plan
    install dependencies:
    pip install -r requirements.txt
 3. Run the simulator
-   ```bash 
+   ```bash
+   python nasaData.py #get files from nasa 
    python spaceGraphics.py
    
