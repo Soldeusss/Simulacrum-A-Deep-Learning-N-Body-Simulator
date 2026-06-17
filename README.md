@@ -104,7 +104,7 @@ The network achieves a Global Relative Error of **0.97%**. However, accuracy var
 
 ## Model Limitations
 
-The model uses a simple neural network to approximate orbital motion.
+The model uses a simple Feedforward neural network to approximate orbital motion.
 It performs well over short time spans but becomes less accurate over longer simulations. This is mainly due to small errors accumulating over repeated predictions, especially in more sensitive orbital regions.
 
 Some additional differences between predicted and true trajectories also come from the fact that the model is learning an approximation of the system rather than exact physics, and from simplifications made in visualizing 3D motion in 2D.
