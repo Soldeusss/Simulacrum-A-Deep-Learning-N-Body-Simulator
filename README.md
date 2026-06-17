@@ -27,26 +27,25 @@ Simulacrum-A-Deep-Learning-N-Body-Simulator/
     └── spaceGraphics.py
 ```
 # Simulacrum: Neural N-Body Simulator
+Simulacrum is a hybrid physics and deep learning system that uses a neural network to approximate the motion of an N-body gravitational system.
 
+The goal is to compare traditional physics-based simulation with a learned model that predicts how the system evolves over time.
 
 https://github.com/user-attachments/assets/13265ec8-42cb-48f2-ad03-274a7e7a81b4
 
-
-
-# Deep-Learning Orbital Mechanics
-Simulacrum is a hybrid physics + deep learning system that uses a feed-forward neural network as a surrogate model to approximate chaotic N-body dynamics.
-
 ## Overview
-Simulacrum is designed to simulate chaotic N-body gravitational interactions. The goal is to approximate the computational cost of traditional N-body simulations (O(N²) complexity per timestep) using a Feed-Forward Neural Network surrogate model 
+Simulacrum simulates gravitational interactions between multiple bodies using Newtonian physics.
 
-While the underlying physics engine uses 4th-order Runge-Kutta (RK4) integration to generate high-fidelity training data, the trained neural surrogate model predicts planetary state transitions in constant time per system update (O(1) inference for this fixed 10-body architecture). In general, neural surrogate models scale with input dimensionality and architectural complexity rather than explicit pairwise interaction count.
+A physics engine generates training data using a 4th-order Runge-Kutta (RK4) integrator. A neural network is then trained to predict how the system evolves from one state to the next.
+
+This allows the neural network to act as a faster approximation of the simulation once trained.
 
 <img width="1189" height="698" alt="efficiency" src="https://github.com/user-attachments/assets/82c3e9a0-a7bf-4ebf-b968-1e84329e7bf5" />
 
 ## Key Features
 * **High-Precision Physics:** Implements RK4 integration for planetary dynamics with state vectors sourced from NASA’s NAIF SPICE kernels via `spiceypy`.
 * **Parallelized Data Pipeline:** Utilizes Python's concurrent.futures to run a Monte Carlo engine across parallel processes, generating a 32MB dataset of 30,000 unique gravitational flyby scenarios across 17,000+ timesteps per trial
-* **Deep Neural Surrogate Model:** A 5-layer feed-forward neural network that maps 17 initial state features to 54 continuous kinematic variables, approximating chaotic perturbations with a global mean relative error of < 1%
+* **Deep Neural Surrogate Model:** A 5-layer feed-forward neural network that maps 17 initial state features to 54 continuous kinematic variables, learning complex orbital interactions from simulated data
 * **Real-Time Visualization:** Interactive PyGame environment for rendering planetary trajectories and AI predictions.
 
 ## Technical Architecture
@@ -55,20 +54,20 @@ The baseline simulation calculates gravitational acceleration using Newton’s U
 
 $$F = G \frac{m_1 m_2}{r^2}$$
 
-To maintain numerical stability, the engine uses RK4 integration to evolve positions and velocities over time, ensuring physically consistent trajectories prior to model training.
+RK4 integration is used to update positions and velocities over time while maintaining numerical stability.
 
 ## Data Pipeline & Ingestion
 
-To train the neural net, a  data generation pipeline was made to simulate chaotic N-body interactions at scale:
+To train the neural net, a data generation pipeline was made to simulate chaotic N-body interactions at scale:
 
 - **Ingestion:**  
-  Programmatically fetches and parses NASA NAIF SPICE kernels to establish ground-truth initial conditions.
+  Fetches and parses NASA NAIF SPICE kernels to establish initial conditions.
 
 - **Simulation Engine:**  
   Generates randomized "rogue interloper" parameters (mass, velocity, trajectory).
 
 - **Parallel Execution:**  
-  Uses Python multiprocessing to compute 30,000 distinct universes simultaneously, utilizing RK4 integration to step forward in time and capture final planetary states.
+  Thousands of independent simulations are run in parallel to generate training data efficiently
 
 ### The Neural Network
 * **Input Layer:** Interloper mass, time horizon, 3D position/velocity vectors, and initial scalar distances to all major celestial bodies.
@@ -77,7 +76,7 @@ To train the neural net, a  data generation pipeline was made to simulate chaoti
 * **Performance:**
     * **Mean Position Error (MAE):** 1,236,958 km (on a solar-system scale).
     * **Global Mean Relative Error:** 0.0097.
-    * **Time Complexity:** O(1) inference per system state update, bypassing the O(N²) bottleneck of traditional numerical integrators.
+    * **Time Complexity:** Constant-time neural network inference per update, replacing step-by-step physics simulation with direct prediction of the next system state.
 
 ## Model Evaluation & Error Breakdown
 <img width="845" height="546" alt="Learning Curve" src="https://github.com/user-attachments/assets/1456f022-e962-49d7-b044-2c09c506cf38" />
@@ -103,11 +102,12 @@ The network achieves a Global Relative Error of **0.97%**. However, accuracy var
 
 <img width="1065" height="660" alt="Screenshot 2026-04-23 142809" src="https://github.com/user-attachments/assets/caf24d7f-5bc2-47a3-89a2-80ed739e1c88" />
 
-### Technical Note: Model Error vs. Visualization Effects
-Deviations in predicted trajectories arise from both model and rendering factors:
-1. **Chaotic Error Amplification:** The gravitational N-body system is highly sensitive to initial conditions. Small prediction errors compound over time during autoregressive rollout, particularly in the inner planetary orbits (as seen in the Mercury/Venus metrics above).
-2. **Model Approximation Error:** The neural network learns a statistical mapping of state transitions rather than exact numerical integration,resulting in bounded but non-zero positional drift
-3. **Visualization Transformations:** Nonlinear spatial compression (fractional power scaling) and 2D projection introduce additional perceptual distortion when mapping astronomical coordinates to screen space.
+## Model Limitations
+
+The model uses a simple neural network to approximate orbital motion.
+It performs well over short time spans but becomes less accurate over longer simulations. This is mainly due to small errors accumulating over repeated predictions, especially in more sensitive orbital regions.
+
+Some additional differences between predicted and true trajectories also come from the fact that the model is learning an approximation of the system rather than exact physics, and from simplifications made in visualizing 3D motion in 2D.
 
 ## Data Sources & Dependencies
 This project utilizes NASA's **NAIF SPICE** toolkit to ensure high-fidelity planetary states. The following kernels are required for the physics engine to calculate accurate gravitational baselines:
